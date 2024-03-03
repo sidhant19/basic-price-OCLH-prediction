@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Most Basic Market Prediction Model</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        body {
+
+            width:100vw;
+            height: 100vh;
+            background-image: linear-gradient(to bottom, rgb(255, 1, 1), rgb(0, 0, 0));
+            color: white; /* Text color */
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+
+        }
+        .imgls{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+         .container {
+
+        }
+        .image {
+            max-width: 100%; /* Ensure image does not exceed container width */
+            height: auto; /* Maintain aspect ratio */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .btn-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn-list .btn {
+            margin: 10px;
+            padding: 20px 30px;
+            font-size: 18px;
+            border-radius: 10px;
+            background-color: #FFFFFF;
+            border: none;
+            color: black;
+            transition: all 0.3s ease;
+        }
+        .btn-list .btn:hover {
+            background-color: #000000;
+            color: white;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .form-control {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>The Most Basic Market Prediction Model</h1>
+        <form action="/" method="POST">
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="Capital" name="capital" placeholder="Capital">
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="Leverage" name="leverage" placeholder="Leverage">
+            </div>
+            <div class="btn-list">
+                {% for ticker in tickers %}
+                <button type="submit" name="ticker" value="{{ ticker }}" class="btn btn-primary btn-lg">{{ ticker }}</button>
+                {% endfor %}
+                <!-- Add more buttons as needed -->
+            </div>
+        </form>
+        {% if ticker %}
+        <h1>{{ ticker }}</h1>
+        <h1>Capital: {{ capital }}</h1>
+        <h1>Leverage: {{ leverage }}x</h1>
+        <br>
+        <h1>Total P&L: {{ cd }}</h1>
+        <br>
+        <h1>Graphs</h1>
+
+
+    </div>
+    <div class="imgls">
+    {% for gr in datas %}
+    <img src = {{gr}}>
+    {% endfor %}
+    {% endif %}
+    </div>
+</body>
+</html>
